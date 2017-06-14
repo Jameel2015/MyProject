@@ -1,0 +1,874 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record model="workflow" id="wkf_bms">
+      <field name="name">Request Workflow</field>
+      <field name="osv">beneficiary.request</field>
+      <field name="on_create">True</field>
+    </record>
+
+<!--Activities-->
+
+    <record model="workflow.activity" id="act_draft">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="flow_start">True</field>
+      <field name="name">draft</field>
+    </record>
+
+    <record model="workflow.activity" id="act_schedule">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Schedule Appointment</field>
+      <field name="action">action_schedule()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_schedule_manual">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Schedule Manual Appointment</field>
+      <field name="action">action_manual_schedule()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_vol_feedback">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Volunteer Feedback</field>
+      <field name="action">action_feedback()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_benef_committee">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Beneficiary Committee</field>
+      <field name="action">action_approve()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_benef_committee_approve">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Beneficiary Committee Approve</field>
+      <field name="action">action_approve()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_benef_rulebook_validate">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Beneficiary Committee Rule Book Validate</field>
+      <field name="action">action_validate()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_benef_rulebook_not_validate">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Beneficiary Committee Rule Book Not Validate</field>
+      <field name="action">action_validate()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_benef_manually_send">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Beneficiary Committee Manually Send</field>
+      <field name="action">action_send()</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="act_req_committee">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Request Committee</field>
+      <field name="action">action_approve()</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="act_req_committee_approve">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Request Committee Approve</field>
+      <field name="action">action_approve()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_req_rulebook_validate">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Request Committee Rule Book Validate</field>
+      <field name="action">action_validate()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_req_rulebook_not_validate">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Request Committee Rule Book Not Validate</field>
+      <field name="action">action_validate()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_req_manually_send">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Request Committee Manually Send</field>
+      <field name="action">action_send()</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="act_taka_committee">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Takaful Committee</field>
+      <field name="action">action_approve()</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="act_taka_committee_approve">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Takaful Committee Approve</field>
+      <field name="action">action_approve()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_taka_rulebook_validate">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Takaful Committee Rule Book Validate</field>
+      <field name="action">action_validate()</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="act_taka_rulebook_not_validate">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Takaful Committee Rule Book Not Validate</field>
+      <field name="action">action_validate()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_taka_manually_send">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Takaful Committee Manually Send</field>
+      <field name="action">action_send()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_board">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Board</field>
+      <field name="action">action_send()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_board_approve">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Board Approved</field>
+      <field name="action">action_send()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="request_hold">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Hold</field>
+      <field name="action">action_hold()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="vol_review">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Review</field>
+      <field name="action">action_review()</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="taka_review">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Review</field>
+      <field name="action">action_review()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="board_review">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Review</field>
+      <field name="action">action_review()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="secretariate">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Secretariate</field>
+      <field name="action">action_review()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="accounting">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">Accounting</field>
+      <field name="action">action_review()</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="act_done">
+      <field name="wkf_id" ref="wkf_bms"/>
+      <field name="name">done</field>
+      <field name="flow_stop">True</field>
+      <field name="action">action_done()</field>
+      <field name="kind">function</field>
+    </record>
+
+
+<!--Transitions-->
+
+    <record model="workflow.transition" id="t1">
+      <field name="act_from" ref="act_draft"/>
+      <field name="act_to" ref="act_schedule"/>
+      <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t2">
+        <field name="act_from" ref="act_draft"/>
+        <field name="act_to" ref="act_schedule_manual"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t3">
+        <field name="act_from" ref="act_schedule_manual"/>
+        <field name="act_to" ref="act_vol_feedback"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t4">
+        <field name="act_from" ref="act_schedule"/>
+        <field name="act_to" ref="act_vol_feedback"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t5">
+        <field name="act_from" ref="act_vol_feedback"/>
+        <field name="act_to" ref="act_benef_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t51">
+        <field name="act_from" ref="act_vol_feedback"/>
+        <field name="act_to" ref="act_req_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="tr7">
+        <field name="act_from" ref="vol_review"/>
+        <field name="act_to" ref="act_vol_feedback"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t8">
+        <field name="act_from" ref="act_benef_committee"/>
+        <field name="act_to" ref="vol_review"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t13">
+        <field name="act_from" ref="act_req_committee"/>
+        <field name="act_to" ref="vol_review"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t9">
+        <field name="act_from" ref="act_benef_committee"/>
+        <field name="act_to" ref="act_benef_rulebook_validate"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t10">
+        <field name="act_from" ref="act_benef_committee"/>
+        <field name="act_to" ref="act_benef_rulebook_not_validate"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t9111">
+        <field name="act_from" ref="act_benef_rulebook_validate"/>
+        <field name="act_to" ref="act_benef_committee_approve"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t91121">
+        <field name="act_from" ref="act_benef_rulebook_not_validate"/>
+        <field name="act_to" ref="act_benef_manually_send"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t911">
+        <field name="act_from" ref="act_benef_committee_approve"/>
+        <field name="act_to" ref="act_taka_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t9112">
+        <field name="act_from" ref="act_benef_manually_send"/>
+        <field name="act_to" ref="act_taka_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t912_re">
+        <field name="act_from" ref="act_taka_committee"/>
+        <field name="act_to" ref="taka_review"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t91dsdsds12">
+        <field name="act_from" ref="taka_review"/>
+        <field name="act_to" ref="act_benef_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t9sds2">
+        <field name="act_from" ref="taka_review"/>
+        <field name="act_to" ref="act_req_committee"/>
+        <field name="condition"> </field>
+    </record>
+    
+
+
+    <record model="workflow.transition" id="t15">
+        <field name="act_from" ref="act_req_committee"/>
+        <field name="act_to" ref="act_req_rulebook_validate"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t16">
+        <field name="act_from" ref="act_req_committee"/>
+        <field name="act_to" ref="act_req_rulebook_not_validate"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t161">
+        <field name="act_from" ref="act_req_rulebook_not_validate"/>
+        <field name="act_to" ref="act_req_manually_send"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t162">
+        <field name="act_from" ref="act_req_manually_send"/>
+        <field name="act_to" ref="act_taka_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t721">
+        <field name="act_from" ref="act_req_rulebook_validate"/>
+        <field name="act_to" ref="act_req_committee_approve"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t711">
+        <field name="act_from" ref="act_req_committee_approve"/>
+        <field name="act_to" ref="act_taka_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t17">
+        <field name="act_from" ref="act_taka_committee"/>
+        <field name="act_to" ref="act_taka_rulebook_not_validate"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t18">
+        <field name="act_from" ref="act_taka_committee"/>
+        <field name="act_to" ref="act_taka_rulebook_validate"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t19">
+        <field name="act_from" ref="act_taka_rulebook_not_validate"/>
+        <field name="act_to" ref="act_taka_manually_send"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t20">
+        <field name="act_from" ref="act_taka_rulebook_validate"/>
+        <field name="act_to" ref="act_taka_committee_approve"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t21">
+        <field name="act_from" ref="act_taka_manually_send"/>
+        <field name="act_to" ref="act_board"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t22">
+        <field name="act_from" ref="act_taka_committee_approve"/>
+        <field name="act_to" ref="act_board"/>
+        <field name="condition"> </field>
+    </record>
+
+
+
+
+    <record model="workflow.transition" id="t27">
+        <field name="act_from" ref="act_board"/>
+        <field name="act_to" ref="board_review"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t28">
+        <field name="act_from" ref="board_review"/>
+        <field name="act_to" ref="act_taka_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t29">
+        <field name="act_from" ref="act_board"/>
+        <field name="act_to" ref="act_board_approve"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t30">
+        <field name="act_from" ref="act_board_approve"/>
+        <field name="act_to" ref="secretariate"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t311">
+        <field name="act_from" ref="secretariate"/>
+        <field name="act_to" ref="accounting"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t31">
+        <field name="act_from" ref="accounting"/>
+        <field name="act_to" ref="act_done"/>
+        <field name="condition"> </field>
+    </record>
+
+
+
+
+
+
+
+    <record model="workflow.transition" id="t32">
+        <field name="act_from" ref="act_req_committee"/>
+        <field name="act_to" ref="request_hold"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t33">
+        <field name="act_from" ref="request_hold"/>
+        <field name="act_to" ref="act_req_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t34">
+        <field name="act_from" ref="act_benef_committee"/>
+        <field name="act_to" ref="request_hold"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t35">
+        <field name="act_from" ref="request_hold"/>
+        <field name="act_to" ref="act_benef_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t36">
+        <field name="act_from" ref="act_taka_committee"/>
+        <field name="act_to" ref="request_hold"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t37">
+        <field name="act_from" ref="request_hold"/>
+        <field name="act_to" ref="act_taka_committee"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record model="workflow.transition" id="t38">
+        <field name="act_from" ref="act_board"/>
+        <field name="act_to" ref="request_hold"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record model="workflow.transition" id="t39">
+        <field name="act_from" ref="request_hold"/>
+        <field name="act_to" ref="act_board"/>
+        <field name="condition"> </field>
+    </record>
+
+
+
+    <!-- Programme -->
+
+    <record model="workflow" id="wkf_programme">
+      <field name="name">AID Programme</field>
+      <field name="osv">programme.aid</field>
+      <field name="on_create">True</field>
+    </record>
+
+    <record model="workflow.activity" id="program_draft">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="flow_start">True</field>
+      <field name="name">draft</field>
+    </record>
+
+    <record model="workflow.activity" id="designed_family">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Designed for Family</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="family_coupon">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Coupon</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="family_cash">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Cash</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="family_rent">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Rent Program</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="family_rent_standard">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Rent Standard Rule(Standard Amount in Rule)</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="family_standard_rule">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Standard Rule (Standard Amount in Rule)</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="assignment_rule">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Assignment Rule</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="standard_amount">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Standard Amount</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="filter_criteria">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Filter Criteria</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="designed_individual">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Designed for Individual Beneficiary</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="individual_coupon">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Coupon</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="individual_cash">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Cash</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="filter_auto">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Automatic</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="filter_manual">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Manual</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="programme_execute_records">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Program Execution Records</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="programme_assign">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Assign Program</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="programme_takaful">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Takaful Committee</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="programme_takaful_approve">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Takaful Committee Approve</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="programme_takaful_review">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Review</field>
+      <field name="kind">function</field>
+    </record>
+
+
+
+    <record model="workflow.activity" id="programme_board">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Board</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="programme_board_approve">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Board Approve</field>
+      <field name="kind">function</field>
+    </record>
+
+    <record model="workflow.activity" id="programme_board_review">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Review</field>
+      <field name="kind">function</field>
+    </record>
+
+
+    <record model="workflow.activity" id="programme_schedule">
+      <field name="wkf_id" ref="wkf_programme"/>
+      <field name="name">Schedule</field>
+      <field name="kind">function</field>
+      <field name="flow_stop">True</field>
+    </record>
+
+
+    <!-- Transitions -->
+    <record id="b1" model="workflow.transition">
+          <field name="act_from" ref="program_draft"/>
+          <field name="act_to" ref="designed_family"/>
+          <field name="signal">Designed for?</field>
+          <field name="condition">Family</field>
+    </record>
+
+    <record id="b2" model="workflow.transition">
+        <field name="act_from" ref="program_draft"/>
+        <field name="act_to" ref="designed_individual"/>
+        <field name="signal">Designed for?</field>
+        <field name="condition">Individual</field>
+    </record>
+
+    <record id="b3" model="workflow.transition">
+        <field name="act_from" ref="designed_individual"/>
+        <field name="act_to" ref="individual_cash"/>
+        <field name="signal">Mode Aid?</field>
+        <field name="condition">Cash</field>
+    </record>
+
+    <record id="b4" model="workflow.transition">
+        <field name="act_from" ref="designed_individual"/>
+        <field name="act_to" ref="individual_coupon"/>
+        <field name="signal">Mode Aid?</field>
+        <field name="condition">Coupon</field>
+    </record>
+
+    <record id="b5" model="workflow.transition">
+        <field name="act_from" ref="designed_family"/>
+        <field name="act_to" ref="family_cash"/>
+        <field name="signal">Mode Aid?</field>
+        <field name="condition">Cash</field>
+    </record>
+
+    <record id="b6" model="workflow.transition">
+        <field name="act_from" ref="designed_family"/>
+        <field name="act_to" ref="family_coupon"/>
+        <field name="signal">Mode Aid?</field>
+        <field name="condition">Coupon</field>
+    </record>
+
+    <record id="b7" model="workflow.transition">
+        <field name="act_from" ref="family_cash"/>
+        <field name="act_to" ref="family_rent"/>
+        <field name="signal">Rent Programme?</field>
+        <field name="condition">Yes</field>
+    </record>
+
+    <record id="b8" model="workflow.transition">
+        <field name="act_from" ref="family_rent"/>
+        <field name="act_to" ref="family_rent_standard"/>
+        <field name="signal">Select Standard Rent Rule</field>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b9" model="workflow.transition">
+        <field name="act_from" ref="family_rent_standard"/>
+        <field name="act_to" ref="filter_criteria"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b10" model="workflow.transition">
+        <field name="act_from" ref="family_cash"/>
+        <field name="act_to" ref="family_standard_rule"/>
+        <field name="signal">Rent Program?</field>
+        <field name="condition">No</field>
+    </record>
+
+    <record id="b11" model="workflow.transition">
+        <field name="act_from" ref="family_standard_rule"/>
+        <field name="act_to" ref="filter_criteria"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b12" model="workflow.transition">
+        <field name="act_from" ref="family_coupon"/>
+        <field name="act_to" ref="assignment_rule"/>
+        <field name="signal">Select Assignment Rule/Coupon</field>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b13" model="workflow.transition">
+        <field name="act_from" ref="assignment_rule"/>
+        <field name="act_to" ref="filter_criteria"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b14" model="workflow.transition">
+        <field name="act_from" ref="individual_coupon"/>
+        <field name="act_to" ref="assignment_rule"/>
+        <field name="signal">Select Assignment Rule/Coupon</field>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b15" model="workflow.transition">
+        <field name="act_from" ref="individual_cash"/>
+        <field name="act_to" ref="standard_amount"/>
+        <field name="signal">Select Standard Amount</field>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b16" model="workflow.transition">
+        <field name="act_from" ref="standard_amount"/>
+        <field name="act_to" ref="filter_criteria"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b17" model="workflow.transition">
+        <field name="act_from" ref="filter_criteria"/>
+        <field name="act_to" ref="filter_auto"/>
+        <field name="signal">Type</field>
+        <field name="condition">Auto</field>
+    </record>
+
+    <record id="b18" model="workflow.transition">
+        <field name="act_from" ref="filter_criteria"/>
+        <field name="act_to" ref="filter_manual"/>
+        <field name="signal">Type</field>
+        <field name="condition">Manual</field>
+    </record>
+
+    <record id="b19" model="workflow.transition">
+        <field name="act_from" ref="filter_manual"/>
+        <field name="act_to" ref="programme_execute_records"/>
+        <field name="signal">Execute</field>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b20" model="workflow.transition">
+        <field name="act_from" ref="filter_auto"/>
+        <field name="act_to" ref="programme_execute_records"/>
+        <field name="signal">Execute</field>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b21" model="workflow.transition">
+        <field name="act_from" ref="programme_execute_records"/>
+        <field name="act_to" ref="programme_assign"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b22" model="workflow.transition">
+        <field name="act_from" ref="programme_assign"/>
+        <field name="act_to" ref="programme_takaful"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b23" model="workflow.transition">
+        <field name="act_from" ref="programme_takaful"/>
+        <field name="act_to" ref="programme_takaful_approve"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b24" model="workflow.transition">
+        <field name="act_from" ref="programme_takaful"/>
+        <field name="act_to" ref="programme_takaful_review"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b25" model="workflow.transition">
+        <field name="act_from" ref="programme_takaful_review"/>
+        <field name="act_to" ref="programme_execute_records"/>
+        <field name="condition"> </field>
+    </record>
+
+
+    <record id="b30" model="workflow.transition">
+        <field name="act_from" ref="programme_takaful_approve"/>
+        <field name="act_to" ref="programme_board"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b26" model="workflow.transition">
+        <field name="act_from" ref="programme_board"/>
+        <field name="act_to" ref="programme_board_approve"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b27" model="workflow.transition">
+        <field name="act_from" ref="programme_board"/>
+        <field name="act_to" ref="programme_board_review"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b28" model="workflow.transition">
+        <field name="act_from" ref="programme_board_review"/>
+        <field name="act_to" ref="programme_takaful"/>
+        <field name="condition"> </field>
+    </record>
+
+    <record id="b29" model="workflow.transition">
+        <field name="act_from" ref="programme_board_approve"/>
+        <field name="act_to" ref="programme_schedule"/>
+        <field name="condition"> </field>
+    </record>
+
+
+
+
+
+
+  </data>
+</openerp>
